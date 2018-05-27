@@ -3,18 +3,21 @@ extends Node
 #var currentScene = null
 
 #func _physics_process(delta):
-	
+var mainScene="res://scenes/main/main.tscn";
+var level1="res://scenes/level1/level1.tscn";
+var level2="res://scenes/level2/level2.tscn";
+
 	
 func _input(event):
-	if(event.is_action_pressed("0")):
+	if(event.is_action_pressed("load_main_screen")):
 		print("load main");
-		setScene("res://scenes/main/main.tscn")
+		setScene(mainScene)
 	else: if(event.is_action_pressed("1")):
 		print("load 1");
-		setScene("res://scenes/level1/level1.tscn")
+		setScene(level1)
 	else: if(event.is_action_pressed("2")):
 		print("load 2");
-		setScene("res://scenes/level2/level2.tscn")
+		setScene(level2)
 
         
 

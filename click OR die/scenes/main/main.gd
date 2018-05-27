@@ -9,4 +9,13 @@ func _ready():
    #Demonstrate setting a global variable.
    #Globals.set("MAX_POWER_LEVEL",9000)
 #	print(currentScene)
-   
+  
+	
+
+
+func _new_game():
+	setScene(level1)
+
+
+func _exit_game():
+	get_tree().quit()
