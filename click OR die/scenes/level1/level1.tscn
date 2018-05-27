@@ -1,43 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/level1/level1.gd" type="Script" id=1]
-[ext_resource path="res://scenes/assets/obstacle.png" type="Texture" id=2]
-[ext_resource path="res://scenes/objects/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/objects/endLevel/endObject.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/objects/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/assets/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/scripts/RigidBody2D.gd" type="Script" id=4]
+[ext_resource path="res://scenes/scripts/Area2D.gd" type="Script" id=5]
+[ext_resource path="res://scenes/objects/endLevel/endObject.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 8 )
+extents = Vector2( 274.222, 485.832 )
 
-[sub_resource type="TileSet" id=2]
-
-0/name = ""
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 0, 0 )
-0/is_autotile = false
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8, 8 )
-} ]
-
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Level1" type="Node"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Pause" ]
 
-[node name="TileMap" type="TileMap" parent="." index="0"]
+[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
-position = Vector2( -149.762, 1.62106 )
+position = Vector2( 131.285, 187.33 )
+
+[node name="TileMap" type="TileMap" parent="." index="1"]
+
 mode = 0
-tile_set = SubResource( 2 )
-cell_size = Vector2( 16, 16 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_half_offset = 2
@@ -51,15 +38,154 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 458766, 0, 0, 524303, 0, 0, 589840, 0, 0, 589893, 0, 0, 589894, 0, 0, 655377, 0, 0, 655428, 0, 0, 655429, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720962, 0, 0, 720963, 0, 0, 786452, 0, 0, 786454, 0, 0, 786455, 0, 0, 786497, 0, 0, 851987, 0, 0, 851991, 0, 0, 851992, 0, 0, 852032, 0, 0, 852033, 0, 0, 917523, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 0, 0, 917547, 0, 0, 917548, 0, 0, 917549, 0, 0, 917567, 0, 0, 917569, 0, 0, 983059, 0, 0, 983069, 0, 0, 983073, 0, 0, 983074, 0, 0, 983075, 0, 0, 983076, 0, 0, 983077, 0, 0, 983078, 0, 0, 983079, 0, 0, 983080, 0, 0, 983081, 0, 0, 983082, 0, 0, 983086, 0, 0, 983087, 0, 0, 983088, 0, 0, 983089, 0, 0, 983102, 0, 0, 983105, 0, 0, 1048595, 0, 0, 1048605, 0, 0, 1048618, 0, 0, 1048626, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048637, 0, 0, 1048642, 0, 0, 1114131, 0, 0, 1114141, 0, 0, 1114148, 0, 0, 1114153, 0, 0, 1114165, 0, 0, 1114166, 0, 0, 1114171, 0, 0, 1114172, 0, 0, 1114178, 0, 0, 1179666, 0, 0, 1179677, 0, 0, 1179684, 0, 0, 1179689, 0, 0, 1179703, 0, 0, 1179704, 0, 0, 1179705, 0, 0, 1179706, 0, 0, 1179714, 0, 0, 1245202, 0, 0, 1245214, 0, 0, 1245220, 0, 0, 1245225, 0, 0, 1245250, 0, 0, 1310738, 0, 0, 1310750, 0, 0, 1310756, 0, 0, 1310761, 0, 0, 1310786, 0, 0, 1376274, 0, 0, 1376286, 0, 0, 1376292, 0, 0, 1376297, 0, 0, 1376322, 0, 0, 1441810, 0, 0, 1441823, 0, 0, 1441827, 0, 0, 1441833, 0, 0, 1441858, 0, 0, 1507346, 0, 0, 1507352, 0, 0, 1507353, 0, 0, 1507359, 0, 0, 1507363, 0, 0, 1507368, 0, 0, 1507394, 0, 0, 1572882, 0, 0, 1572883, 0, 0, 1572884, 0, 0, 1572885, 0, 0, 1572886, 0, 0, 1572887, 0, 0, 1572895, 0, 0, 1572899, 0, 0, 1572904, 0, 0, 1638432, 0, 0, 1638434, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1703968, 0, 0, 1703970, 0, 0, 1703977, 0, 0, 1703978, 0, 0, 1703979, 0, 0, 1703980, 0, 0, 1703981, 0, 0, 1703982, 0, 0, 1703983, 0, 0, 1703984, 0, 0, 1703985, 0, 0, 1703986, 0, 0, 1703987, 0, 0, 1703988, 0, 0, 1703989, 0, 0, 1703990, 0, 0, 1769504, 0, 0, 1769505, 0, 0, 1835041, 0, 0 )
+tile_data = PoolIntArray( -131050, 536870924, 0, -131049, 536870917, 0, -131048, 536870917, 0, -65516, 536870927, 0, -65515, 536870926, 0, -65513, 536870923, 0, -65512, 536870923, 0, 65546, 536870924, 0, 65547, 5, 0, 65548, 15, 0, 131077, 9, 0, 131081, 536870913, 0, 131083, 10, 0, 196608, 2, 0, 196613, 8, 0, 196617, 536870925, 0, 196618, 536870923, 0, 196619, 13, 0, 262144, 4, 0, 262145, 12, 0, 262149, 8, 0, 327680, 10, 0, 327682, 0, 0, 327683, 0, 0, 327684, 5, 0, 327685, 6, 0, 327686, 14, 0, 327687, 0, 0, 327688, 536870926, 0, 327689, 536870916, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Player" parent="TileMap" index="0" instance=ExtResource( 3 )]
+[node name="FallingRock" type="RigidBody2D" parent="." index="2"]
 
-position = Vector2( 361.028, 123.754 )
+editor/display_folded = true
+position = Vector2( 476.692, -82.3136 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = true
+sleeping = false
+can_sleep = false
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="endLevelObject" parent="TileMap" index="1" instance=ExtResource( 4 )]
+[node name="KsztaltWidoczy" type="Polygon2D" parent="FallingRock" index="0"]
 
-position = Vector2( 1034.5, 155.452 )
+position = Vector2( -15.4044, 35.2101 )
+polygon = PoolVector2Array( -15.7057, -1.6848, -64.8223, -13.5117, -62.1015, -52.9626, -32, -64, 19.3842, -75.9259, 54.6725, -65.655, 78.1375, -46.7025, 104.31, -23.2375, 52.8675, -6.09, 32.8213, -1.19157, 9.51999, -5.12071 )
+uv = PoolVector2Array(  )
+color = Color( 0.0430946, 0.617188, 0.0385742, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="KsztaltKolizji" type="CollisionPolygon2D" parent="FallingRock" index="1"]
+
+position = Vector2( -14.4044, 35.2101 )
+build_mode = 0
+polygon = PoolVector2Array( -15.6488, -1.74693, -65.6184, -13.7959, -61.8359, -53.7825, -31.4163, -64.5246, 19.3898, -76.4961, 55.0125, -66.2765, 77.2037, -47.8812, 104.067, -23.9381, 52.3846, -7.00274, 31.941, -1.6317, 8.58624, -6.12677 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="TriggerArea" type="Area2D" parent="FallingRock" index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 5 )
+
+[node name="KsztaltObszaru" type="CollisionShape2D" parent="FallingRock/TriggerArea" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="FallingRock2" type="RigidBody2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 952.669, -165.228 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 100.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = true
+sleeping = false
+can_sleep = false
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="KsztaltWidoczy" type="Polygon2D" parent="FallingRock2" index="0"]
+
+position = Vector2( -15.4044, 35.2101 )
+polygon = PoolVector2Array( 94.4888, 13.4659, -0.737366, 29.7904, -90.5222, -5.57933, -109.567, -25.9849, -100.045, -54.5528, -64.675, -80.3999, 23.7493, -95.364, 127.138, -80.3999, 265.896, -100.806, 314.87, -96.7244, 327.113, -76.3188, 313.509, -53.1924, 261.815, -50.4717, 248.211, -11.0208, 212.841, 10.7451, 170.67, -6.9397 )
+uv = PoolVector2Array(  )
+color = Color( 0.682076, 0.180359, 0.769531, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="KsztaltKolizji" type="CollisionPolygon2D" parent="FallingRock2" index="1"]
+
+position = Vector2( -15.4044, 35.2101 )
+build_mode = 0
+polygon = PoolVector2Array( 214.507, 11.7171, 168.255, -8.68851, 85.272, 15.7982, -3.15234, 28.0416, -86.1353, 2.19449, -109.262, -23.6526, -105.18, -48.1393, -72.5315, -78.0676, 28.1362, -95.7524, 127.444, -79.4279, 263.481, -102.554, 316.536, -99.8336, 324.698, -73.9865, 313.815, -52.2205, 263.481, -49.4997, 247.156, -10.0489 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="TriggerArea" type="Area2D" parent="FallingRock2" index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="KsztaltObszaru" type="CollisionShape2D" parent="FallingRock2/TriggerArea" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="endLevelObject" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 1850.62, 118.44 )
 next_level = "res://scenes/level2/level2.tscn"
+
+[connection signal="body_entered" from="FallingRock/TriggerArea" to="FallingRock" method="_on_Area2D_body_entered"]
+
+[connection signal="input_event" from="FallingRock/TriggerArea" to="FallingRock/TriggerArea" method="_on_Area2D_input_event"]
+
+[connection signal="body_entered" from="FallingRock2/TriggerArea" to="FallingRock2" method="_on_Area2D_body_entered"]
 
 
