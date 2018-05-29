@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/level1/level1.gd" type="Script" id=1]
 [ext_resource path="res://scenes/objects/player/Player.tscn" type="PackedScene" id=2]
@@ -6,11 +6,17 @@
 [ext_resource path="res://scenes/scripts/RigidBody2D.gd" type="Script" id=4]
 [ext_resource path="res://scenes/scripts/Area2D.gd" type="Script" id=5]
 [ext_resource path="res://scenes/objects/endLevel/endObject.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/level1/Boundaries.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 274.222, 485.832 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 23.3596, 10 )
 
 [node name="Level1" type="Node" index="0"]
 
@@ -181,6 +187,24 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 1850.62, 118.44 )
 next_level = "res://scenes/level2/level2.tscn"
+
+[node name="Boundaries" type="Area2D" parent="." index="5"]
+
+position = Vector2( 0, 600 )
+scale = Vector2( 100, 1 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 7 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries" index="0"]
+
+shape = SubResource( 4 )
 
 [connection signal="body_entered" from="FallingRock/TriggerArea" to="FallingRock" method="_on_Area2D_body_entered"]
 
