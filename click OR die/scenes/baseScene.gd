@@ -18,6 +18,10 @@ func _input(event):
 	else: if(event.is_action_pressed("2")):
 		print("load 2");
 		setScene(level2)
+	else: if (event.is_action_pressed("R")):
+		print("Restart pressed")
+		get_tree().reload_current_scene()
+		
 
         
 
