@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/level2/level2.gd" type="Script" id=1]
 [ext_resource path="res://scenes/assets/obstacle.png" type="Texture" id=2]
 [ext_resource path="res://scenes/objects/endLevel/endObject.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/objects/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/level2/RigidBody2D.gd" type="Script" id=5]
+[ext_resource path="res://scenes/level2/Area2D.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -27,13 +29,19 @@ extents = Vector2( 8, 8 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 8, 8 )
 } ]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="LineShape2D" id=3]
+
+custom_solver_bias = 0.0
+normal = Vector2( 0, -1 )
+d = 0.0
+
+[node name="Level2" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
-position = Vector2( -149.762, 1.62106 )
+position = Vector2( -150.762, 1.62106 )
 mode = 0
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
@@ -50,15 +58,127 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 655409, 0, 0, 655410, 0, 0, 655411, 0, 0, 655412, 0, 0, 655413, 0, 0, 655414, 0, 0, 655415, 0, 0, 655416, 0, 0, 655417, 0, 0, 720910, 0, 0, 720953, 0, 0, 786446, 0, 0, 786490, 0, 0, 851982, 0, 0, 851996, 0, 0, 851999, 0, 0, 852000, 0, 0, 852026, 0, 0, 917518, 0, 0, 917532, 0, 0, 917536, 0, 0, 917562, 0, 0, 983054, 0, 0, 983062, 0, 0, 983068, 0, 0, 983071, 0, 0, 983098, 0, 0, 1048590, 0, 0, 1048598, 0, 0, 1048604, 0, 0, 1048607, 0, 0, 1048634, 0, 0, 1114126, 0, 0, 1114134, 0, 0, 1114140, 0, 0, 1114143, 0, 0, 1114169, 0, 0, 1179662, 0, 0, 1179671, 0, 0, 1179676, 0, 0, 1179679, 0, 0, 1179705, 0, 0, 1245198, 0, 0, 1245207, 0, 0, 1245212, 0, 0, 1245215, 0, 0, 1245241, 0, 0, 1310734, 0, 0, 1310744, 0, 0, 1310748, 0, 0, 1310752, 0, 0, 1310777, 0, 0, 1376270, 0, 0, 1376277, 0, 0, 1376278, 0, 0, 1376280, 0, 0, 1376283, 0, 0, 1376288, 0, 0, 1376311, 0, 0, 1376312, 0, 0, 1441806, 0, 0, 1441812, 0, 0, 1441817, 0, 0, 1441819, 0, 0, 1441824, 0, 0, 1441846, 0, 0, 1507343, 0, 0, 1507344, 0, 0, 1507345, 0, 0, 1507346, 0, 0, 1507347, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507360, 0, 0, 1507361, 0, 0, 1507362, 0, 0, 1507363, 0, 0, 1507364, 0, 0, 1507365, 0, 0, 1507366, 0, 0, 1507367, 0, 0, 1507368, 0, 0, 1507369, 0, 0, 1507370, 0, 0, 1507380, 0, 0, 1507381, 0, 0, 1572915, 0, 0, 1572916, 0, 0, 1572925, 0, 0, 1572926, 0, 0, 1638453, 0, 0, 1638454, 0, 0, 1638455, 0, 0, 1638456, 0, 0, 1638457, 0, 0, 1638458, 0, 0, 1638459, 0, 0, 1638460, 0, 0 )
+tile_data = PoolIntArray( 327763, 0, 0, 655409, 0, 0, 655410, 0, 0, 655411, 0, 0, 655412, 0, 0, 655413, 0, 0, 655414, 0, 0, 655415, 0, 0, 655416, 0, 0, 655417, 0, 0, 655418, 0, 0, 655419, 0, 0, 655420, 0, 0, 655421, 0, 0, 655422, 0, 0, 655423, 0, 0, 655424, 0, 0, 655425, 0, 0, 655426, 0, 0, 655427, 0, 0, 655428, 0, 0, 655429, 0, 0, 655430, 0, 0, 655431, 0, 0, 655432, 0, 0, 655433, 0, 0, 655434, 0, 0, 655435, 0, 0, 655436, 0, 0, 655437, 0, 0, 655438, 0, 0, 655439, 0, 0, 655440, 0, 0, 655441, 0, 0, 655442, 0, 0, 655443, 0, 0, 655444, 0, 0, 655445, 0, 0, 655446, 0, 0, 720910, 0, 0, 720953, 0, 0, 786446, 0, 0, 786490, 0, 0, 851982, 0, 0, 851995, 0, 0, 851996, 0, 0, 852026, 0, 0, 917518, 0, 0, 917531, 0, 0, 917532, 0, 0, 917562, 0, 0, 983054, 0, 0, 983067, 0, 0, 983068, 0, 0, 983098, 0, 0, 1048590, 0, 0, 1048601, 0, 0, 1048603, 0, 0, 1048604, 0, 0, 1048634, 0, 0, 1114126, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114169, 0, 0, 1114194, 0, 0, 1114195, 0, 0, 1114196, 0, 0, 1179662, 0, 0, 1179670, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179705, 0, 0, 1245198, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245230, 0, 0, 1245241, 0, 0, 1245259, 0, 0, 1245260, 0, 0, 1245261, 0, 0, 1245262, 0, 0, 1310734, 0, 0, 1310739, 0, 0, 1310747, 0, 0, 1310748, 0, 0, 1310765, 0, 0, 1310777, 0, 0, 1376270, 0, 0, 1376283, 0, 0, 1376284, 0, 0, 1376300, 0, 0, 1376311, 0, 0, 1376312, 0, 0, 1441806, 0, 0, 1441819, 0, 0, 1441820, 0, 0, 1441836, 0, 0, 1441846, 0, 0, 1441860, 0, 0, 1441861, 0, 0, 1441862, 0, 0, 1441863, 0, 0, 1441864, 0, 0, 1507343, 0, 0, 1507344, 0, 0, 1507345, 0, 0, 1507346, 0, 0, 1507347, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507356, 0, 0, 1507360, 0, 0, 1507361, 0, 0, 1507362, 0, 0, 1507363, 0, 0, 1507364, 0, 0, 1507365, 0, 0, 1507366, 0, 0, 1507367, 0, 0, 1507368, 0, 0, 1507369, 0, 0, 1507370, 0, 0, 1507371, 0, 0, 1507380, 0, 0, 1507381, 0, 0, 1572915, 0, 0, 1572916, 0, 0, 1572927, 0, 0, 1638453, 0, 0, 1638454, 0, 0, 1638455, 0, 0, 1638456, 0, 0, 1638457, 0, 0, 1638458, 0, 0, 1638459, 0, 0, 1638460, 0, 0 )
 
 [node name="endLevelObject" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 189.687, 203.634 )
+position = Vector2( 772.687, 381.634 )
 next_level = "res://scenes/main/main.tscn"
 
 [node name="Player" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 84.6832, 146.052 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="3"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 5 )
+
+[node name="KsztaltWidoczny" type="Polygon2D" parent="RigidBody2D" index="0"]
+
+position = Vector2( -258.907, 209.493 )
+scale = Vector2( 0.565714, 0.42029 )
+polygon = PoolVector2Array( 1386.4, 163, 1561.4, 163, 1525.4, 225, 1406.4, 232 )
+uv = PoolVector2Array(  )
+color = Color( 0.777344, 0.17308, 0.17308, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" index="1"]
+
+position = Vector2( -41.0674, 255.333 )
+scale = Vector2( 0.416222, 0.193198 )
+build_mode = 0
+polygon = PoolVector2Array( 1386.4, 120.172, 1545.49, 124.931, 1572, 215.345, 1490.69, 267.69, 1370.49, 248.655 )
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="." index="4"]
+
+position = Vector2( 750, -148 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 5 )
+
+[node name="KsztaltWidoczny" type="Polygon2D" parent="RigidBody2D2" index="0"]
+
+position = Vector2( -263.907, 233.493 )
+scale = Vector2( 0.565714, 0.42029 )
+polygon = PoolVector2Array( 1386.4, 163, 1561.4, 163, 1525.4, 225, 1406.4, 232 )
+uv = PoolVector2Array(  )
+color = Color( 0.777344, 0.17308, 0.17308, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D2" index="1"]
+
+position = Vector2( -43.0673, 279.333 )
+scale = Vector2( 0.416222, 0.193198 )
+build_mode = 0
+polygon = PoolVector2Array( 1386.4, 120.172, 1545.49, 124.931, 1572, 215.345, 1490.69, 267.69, 1370.49, 248.655 )
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+
+position = Vector2( 813.787, 506.621 )
+scale = Vector2( 30.7984, 1 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 0.10084, 0 )
+scale = Vector2( 3.08323, 1 )
+shape = SubResource( 3 )
 
 
